@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import Tree from "./components/Tree";
 
 function App() {
   const [data, setData] = useState([]);
@@ -13,7 +14,15 @@ function App() {
       .then((response) => response.json())
       .then((response) => setData(response));
   }
-  return <div className="App">{data.body ? null : <h3>Loading</h3>}</div>;
+  return (
+    <div className="App">
+      {data.body ? (
+        <Tree data={data?.body?.Recommendations} />
+      ) : (
+        <h3>Loading</h3>
+      )}
+    </div>
+  );
 }
 
 export default App;
